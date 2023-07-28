@@ -1,5 +1,5 @@
-// const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
-const API: string = "http://localhost:8080";
+const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
+// const API: string = "http://localhost:8080";
 
 interface registerUser {
   firstName: string;
