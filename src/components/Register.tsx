@@ -1,7 +1,10 @@
 import { FormEvent, ChangeEvent, useState } from "react";
-import { registerUser } from "../hooks/register";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { registerUser } from "../hooks/auth";
 
 export default function Register() {
+  const navigate: NavigateFunction = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,15 +20,18 @@ export default function Register() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    registerUser(formData);
-    e.currentTarget.reset();
-    setFormData({
-      firstName: "",
-      lastName: "",
-      age: "",
-      email: "",
-      password: "",
-    });
+    const statusCode: number = await registerUser(formData);
+
+    if (statusCode === 200) {
+      setFormData({
+        firstName: "",
+        lastName: "",
+        age: "",
+        email: "",
+        password: "",
+      });
+      navigate("/products");
+    }
   };
 
   return (
