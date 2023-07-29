@@ -2,7 +2,7 @@ import { FormEvent, ChangeEvent, useState } from "react";
 import { loginUser } from "../hooks/auth";
 import { loggedUser } from "../vite-env";
 
-export default function Login(): JSX.Element {
+function Login(): JSX.Element {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -77,3 +77,5 @@ export default function Login(): JSX.Element {
     </form>
   );
 }
+
+export default Login;

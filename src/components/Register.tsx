@@ -2,7 +2,7 @@ import { FormEvent, ChangeEvent, useState } from "react";
 import { registerUser } from "../hooks/auth";
 import { registeredUser } from "../vite-env";
 
-export default function Register(): JSX.Element {
+function Register(): JSX.Element {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -117,3 +117,5 @@ export default function Register(): JSX.Element {
     </form>
   );
 }
+
+export default Register;
