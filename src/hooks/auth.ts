@@ -10,6 +10,8 @@ export const registerUser = async (user: registeredUser) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(user),
+    credentials: "include",
+    mode: "cors",
   });
   return res.status;
 };
@@ -21,6 +23,8 @@ export const loginUser = async (user: loggedUser) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(user),
+    credentials: "include",
+    mode: "cors",
   });
   return res.status;
 };
