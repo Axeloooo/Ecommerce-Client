@@ -32,6 +32,5 @@ export const loginUser = async (user: loginUser) => {
     body: JSON.stringify(user),
     credentials: "include",
   });
-  console.log(await res.json());
   return res.status;
 };

@@ -1,21 +1,18 @@
 import { FormEvent, ChangeEvent, useState } from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 import { loginUser } from "../hooks/auth";
 
 function Login() {
-  const navigate: NavigateFunction = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const statusCode: number = await loginUser(formData);
 
@@ -24,7 +21,6 @@ function Login() {
         email: "",
         password: "",
       });
-      navigate("/products");
     }
   };
 
