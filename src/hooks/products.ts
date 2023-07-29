@@ -1,11 +1,13 @@
-const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
-// const API: string = "http://localhost:8080";
+import { ProductInterface } from "../vite-env";
 
-export const getProducts = async (): Promise<number> => {
-  const res: Response = await fetch(`${API}/api/products`, {
+// const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
+const API: string = "http://localhost:8080";
+
+export const getProducts = async (): Promise<ProductInterface[]> => {
+  const res: Response = await fetch(`${API}/api/mock/products`, {
     method: "GET",
     credentials: "include",
     mode: "cors",
   });
-  return res.status;
+  return res.json();
 };

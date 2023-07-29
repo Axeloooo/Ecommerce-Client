@@ -1,9 +1,11 @@
-import { registeredUser, loggedUser } from "../vite-env.d";
+import { RegisteredUserInterface, LoggedUserType } from "../vite-env.d";
 
-const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
-// const API: string = "http://localhost:8080";
+// const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
+const API: string = "http://localhost:8080";
 
-export const registerUser = async (user: registeredUser): Promise<number> => {
+export const registerUser = async (
+  user: RegisteredUserInterface
+): Promise<number> => {
   const res: Response = await fetch(`${API}/api/sessions/register`, {
     method: "POST",
     headers: {
@@ -16,7 +18,7 @@ export const registerUser = async (user: registeredUser): Promise<number> => {
   return res.status;
 };
 
-export const loginUser = async (user: loggedUser): Promise<number> => {
+export const loginUser = async (user: LoggedUserType): Promise<number> => {
   const res: Response = await fetch(`${API}/api/sessions/login`, {
     method: "POST",
     headers: {

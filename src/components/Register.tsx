@@ -1,6 +1,6 @@
 import { FormEvent, ChangeEvent, useState } from "react";
 import { registerUser } from "../hooks/auth";
-import { registeredUser } from "../vite-env";
+import { RegisteredUserInterface } from "../vite-env";
 
 function Register(): JSX.Element {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ function Register(): JSX.Element {
     age: "",
     email: "",
     password: "",
-  } as registeredUser);
+  } as RegisteredUserInterface);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
