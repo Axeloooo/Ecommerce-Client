@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Navbar(): JSX.Element {
+export default function Navbar(): JSX.Element {
   return (
     <nav className="w-full">
       <div className="w-full text-center p-6 bg-indigo-500 text-2xl text-white">
@@ -19,5 +19,3 @@ function Navbar(): JSX.Element {
     </nav>
   );
 }
-
-export default Navbar;
