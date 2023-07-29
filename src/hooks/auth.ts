@@ -1,36 +1,26 @@
+import { registeredUser, loggedUser } from "../vite-env.d";
+
 const API: string = "https://ecommerce-api-production-c90c.up.railway.app";
 // const API: string = "http://localhost:8080";
 
-interface registerUser {
-  firstName: string;
-  lastName: string;
-  age: string;
-  email: string;
-  password: string;
-}
-
-type loginUser = Omit<registerUser, "firstName" | "lastName" | "age">;
-
-export const registerUser = async (user: registerUser) => {
+export const registerUser = async (user: registeredUser) => {
   const res: Response = await fetch(`${API}/api/sessions/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(user),
-    credentials: "include",
   });
   return res.status;
 };
 
-export const loginUser = async (user: loginUser) => {
+export const loginUser = async (user: loggedUser) => {
   const res: Response = await fetch(`${API}/api/sessions/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(user),
-    credentials: "include",
   });
   return res.status;
 };

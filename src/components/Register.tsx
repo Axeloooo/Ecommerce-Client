@@ -1,14 +1,15 @@
 import { FormEvent, ChangeEvent, useState } from "react";
 import { registerUser } from "../hooks/auth";
+import { registeredUser } from "../vite-env";
 
-export default function Register() {
+export default function Register(): JSX.Element {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     age: "",
     email: "",
     password: "",
-  });
+  } as registeredUser);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;

@@ -1,11 +1,12 @@
 import { FormEvent, ChangeEvent, useState } from "react";
 import { loginUser } from "../hooks/auth";
+import { loggedUser } from "../vite-env";
 
-function Login() {
+function Login(): JSX.Element {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });
+  } as loggedUser);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
