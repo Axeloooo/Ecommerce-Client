@@ -1,8 +1,13 @@
 import { FormEvent, ChangeEvent, useState } from "react";
-import { registerUser } from "../hooks/auth";
+import { registerUser } from "../functions/auth";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authcontext";
 import { RegisteredUserInterface } from "../vite-env";
 
 function Register(): JSX.Element {
+  const { register } = useAuth();
+  const navigate: NavigateFunction = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -18,10 +23,9 @@ function Register(): JSX.Element {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const statusCode: number = await registerUser(formData);
-
-    if (statusCode === 200) {
-      console.log("User registered");
+    const res: Response = await registerUser(formData);
+    const cid: string = await res.json();
+    if (res.status === 200) {
       setFormData({
         firstName: "",
         lastName: "",
@@ -29,6 +33,8 @@ function Register(): JSX.Element {
         email: "",
         password: "",
       });
+      register(cid);
+      navigate("/views/products");
     }
   };
 
@@ -102,13 +108,13 @@ function Register(): JSX.Element {
         <div className="flex justify-center w-full gap-10 px-10">
           <button
             type="submit"
-            className="rounded-xl bg-indigo-500 text-white p-2 text-lg w-full"
+            className="rounded-xl bg-indigo-500 text-white p-2 text-lg w-full hover:bg-indigo-400"
           >
             Submit
           </button>
           <button
             type="reset"
-            className="rounded-xl bg-red-500 text-white p-2 text-lg w-full"
+            className="rounded-xl bg-red-500 text-white p-2 text-lg w-full hover:bg-red-400"
           >
             Reset
           </button>

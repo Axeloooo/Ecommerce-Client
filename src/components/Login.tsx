@@ -1,8 +1,13 @@
 import { FormEvent, ChangeEvent, useState } from "react";
-import { loginUser } from "../hooks/auth";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { loginUser } from "../functions/auth";
+import { useAuth } from "../context/authcontext";
 import { LoggedUserType } from "../vite-env";
 
 function Login(): JSX.Element {
+  const { login } = useAuth();
+  const navigate: NavigateFunction = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,13 +20,15 @@ function Login(): JSX.Element {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const statusCode: number = await loginUser(formData);
-
-    if (statusCode === 200) {
+    const res: Response = await loginUser(formData);
+    const cid: string = await res.json();
+    if (res.status === 200) {
       setFormData({
         email: "",
         password: "",
       });
+      login(cid);
+      navigate("/views/products");
     }
   };
 
@@ -62,13 +69,13 @@ function Login(): JSX.Element {
         <div className="flex justify-center w-full gap-10 px-10">
           <button
             type="submit"
-            className="rounded-xl bg-indigo-500 text-white p-2 text-lg w-full"
+            className="rounded-xl bg-indigo-500 text-white p-2 text-lg w-full hover:bg-indigo-400"
           >
             Submit
           </button>
           <button
             type="reset"
-            className="rounded-xl bg-red-500 text-white p-2 text-lg w-full"
+            className="rounded-xl bg-red-500 text-white p-2 text-lg w-full hover:bg-red-400"
           >
             Reset
           </button>
