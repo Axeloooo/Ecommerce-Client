@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
+import Stripe from "./components/Stripe";
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           // Products routes
           <Route path="/views/products" element={<Products />}></Route>
           <Route path="/views/products/:pid" element={<Product />}></Route>
-          // Cart router
+          // Cart route
           <Route path="/views/carts" element={<Cart />}></Route>
+          // Payment route
+          <Route path="views/payment/:cid" element={<Stripe />}></Route>
         </Routes>
       </BrowserRouter>
     </>

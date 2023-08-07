@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import {
-  deleteProductFromCart,
-  getCartById,
-  postPurchase,
-} from "../functions/carts";
+import { deleteProductFromCart, getCartById } from "../functions/carts";
 import Loader from "./Loader";
-import { CartInterface, CartItemInterface, TicketInterface } from "../vite-env";
-import { Link } from "react-router-dom";
+import { CartInterface, CartItemInterface } from "../vite-env";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { CustomAlert } from "../utils/alert";
 import { SweetAlertResult } from "sweetalert2";
 
 function Cart() {
+  const navigator: NavigateFunction = useNavigate();
   const [total, setTotal] = useState(0 as number);
   const [cart, setCart] = useState({} as CartInterface);
   const [loading, setLoading] = useState(true as boolean);
@@ -25,10 +22,7 @@ function Cart() {
       if (result.isConfirmed) {
         const cid: string | null = localStorage.getItem("cid");
         if (cid) {
-          const res: TicketInterface = await postPurchase(cid);
-          await CustomAlert.showTicket(res);
-          setLoading(true);
-          setDeleted(true);
+          navigator(`/views/payment/${cid}`);
         }
       }
     } catch (err) {

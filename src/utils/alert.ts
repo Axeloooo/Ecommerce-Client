@@ -28,4 +28,13 @@ export class CustomAlert {
       footer: `Ticket ID: ${ticket._id}`,
     });
   }
+
+  static async showPaymentError(
+    message: string
+  ): Promise<SweetAlertResult<any>> {
+    return Swal.fire({
+      title: message,
+      icon: "error",
+    });
+  }
 }
