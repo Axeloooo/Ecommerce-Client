@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+export interface AuthDataInterface {
+  email: string;
+  cid: string;
+}
+
 export interface RegisteredUserInterface {
   firstName: string;
   lastName: string;
@@ -48,9 +53,9 @@ export interface ProductsInterface {
 
 export interface AuthContextInterface {
   isAuthenticated: boolean;
-  login: (string) => void;
+  login: (string, string) => void;
   logout: () => void;
-  register: (string) => void;
+  register: (string, string) => void;
 }
 
 export interface CartInterface {

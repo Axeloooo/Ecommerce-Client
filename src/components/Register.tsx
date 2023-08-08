@@ -2,7 +2,7 @@ import { FormEvent, ChangeEvent, useState } from "react";
 import { registerUser } from "../functions/auth";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authcontext";
-import { RegisteredUserInterface } from "../vite-env";
+import { AuthDataInterface, RegisteredUserInterface } from "../vite-env";
 
 function Register(): JSX.Element {
   const { register } = useAuth();
@@ -24,7 +24,7 @@ function Register(): JSX.Element {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const res: Response = await registerUser(formData);
-    const cid: string = await res.json();
+    const authData: AuthDataInterface = await res.json();
     if (res.status === 200) {
       setFormData({
         firstName: "",
@@ -33,7 +33,7 @@ function Register(): JSX.Element {
         email: "",
         password: "",
       });
-      register(cid);
+      register(authData.email, authData.cid);
       navigate("/views/products");
     }
   };

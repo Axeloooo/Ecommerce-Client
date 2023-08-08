@@ -2,7 +2,7 @@ import { FormEvent, ChangeEvent, useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { loginUser } from "../functions/auth";
 import { useAuth } from "../context/authcontext";
-import { LoggedUserType } from "../vite-env";
+import { LoggedUserType, AuthDataInterface } from "../vite-env";
 
 function Login(): JSX.Element {
   const { login } = useAuth();
@@ -21,13 +21,13 @@ function Login(): JSX.Element {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const res: Response = await loginUser(formData);
-    const cid: string = await res.json();
+    const authData: AuthDataInterface = await res.json();
     if (res.status === 200) {
       setFormData({
         email: "",
         password: "",
       });
-      login(cid);
+      login(authData.email, authData.cid);
       navigate("/views/products");
     }
   };

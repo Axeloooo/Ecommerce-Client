@@ -6,6 +6,7 @@ import Products from "./components/Products";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
 import Stripe from "./components/Stripe";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/views/carts" element={<Cart />}></Route>
           // Payment route
           <Route path="views/payment/:cid" element={<Stripe />}></Route>
+          // Profile route
+          <Route path="views/profile" element={<Profile />}></Route>
         </Routes>
       </BrowserRouter>
     </>

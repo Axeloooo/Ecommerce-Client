@@ -25,25 +25,29 @@ function AuthProvider({ children }: { children: ReactNode }): JSX.Element {
   const [isAuthenticated, setIsAuthenticated] = useState(false as boolean);
 
   useEffect(() => {
-    const token: string | null = localStorage.getItem("cid");
-    if (token) {
+    const uid: string | null = localStorage.getItem("uid");
+    const cid: string | null = localStorage.getItem("cid");
+    if (uid && cid) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
   }, []);
 
-  const handleRegister = (cid: string): void => {
+  const handleRegister = (email: string, cid: string): void => {
+    localStorage.setItem("uid", email);
     localStorage.setItem("cid", cid);
     setIsAuthenticated(true);
   };
 
-  const handleLogin = (cid: string): void => {
+  const handleLogin = (email: string, cid: string): void => {
+    localStorage.setItem("uid", email);
     localStorage.setItem("cid", cid);
     setIsAuthenticated(true);
   };
 
   const handleLogout = (): void => {
+    localStorage.removeItem("uid");
     localStorage.removeItem("cid");
     setIsAuthenticated(false);
   };
