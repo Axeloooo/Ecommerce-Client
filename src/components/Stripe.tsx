@@ -29,11 +29,13 @@ function Stripe(): JSX.Element {
 
   return (
     <main className="flex flex-col justify-around items-center gap-10x p-5">
-      <div className="flex justify-center items-center w-full text-indigo-500 text-xl">
+      <div className="flex justify-center items-center w-full text-indigo-500 text-xl font-bold shadow-xl rounded-xl bg-white p-5">
         <h1>Payment</h1>
       </div>
       {loading ? (
-        <Loader></Loader>
+        <div className="w-full h-96 flex justify-center items-center">
+          <Loader key="loader" />
+        </div>
       ) : (
         <Elements
           stripe={stripePromise}

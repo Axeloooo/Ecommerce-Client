@@ -46,7 +46,7 @@ function PaymentForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center w-full h-96 gap-20"
+      className="flex flex-col justify-center items-center w-full h-96 gap-20 pt-20"
     >
       <PaymentElement />
       {loading ? (
@@ -55,7 +55,7 @@ function PaymentForm() {
         <div>
           <button
             type="submit"
-            className="rounded-xl bg-indigo-500 text-white p-2 hover:bg-indigo-400 w-52 flex justify-center items-center"
+            className="rounded-xl bg-indigo-500 text-white p-2 hover:bg-indigo-400 w-52 flex justify-center items-center shadow-xl"
           >
             Pay
           </button>

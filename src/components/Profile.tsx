@@ -28,7 +28,7 @@ function Profile() {
   }, []);
   return (
     <main className="flex flex-col justify-around items-center gap-5 p-5">
-      <div className="flex justify-center items-center w-full text-indigo-500 text-xl">
+      <div className="flex justify-center items-center w-full text-indigo-500 text-xl p-5 shadow-xl rounded-xl bg-white font-bold">
         <h1>Receipts</h1>
       </div>
       {loading ? (
@@ -43,7 +43,7 @@ function Profile() {
         tickets.map((ticket: TicketInterface) => (
           <div
             key={ticket._id}
-            className="border-2 border-indigo-500 rounded-md p-5 flex flex-col justify-center items-start gap-1 text-indigo-500"
+            className="rounded-xl shadow-xl bg-white p-5 flex flex-col justify-center items-start gap-1 text-indigo-500 w-full"
           >
             <div>
               <p>

@@ -77,7 +77,7 @@ function Product() {
           Error: {error}
         </div>
       ) : (
-        <div className="flex flex-col gap-3 text-indigo-500 rounded-lg border-indigo-500 border-2 p-5">
+        <div className="flex flex-col gap-3 text-indigo-500 rounded-xl p-5 shadow-xl bg-white">
           <div className="flex justify-center items-center font-bold text-xl">
             <p>{product.title}</p>
           </div>

@@ -80,8 +80,8 @@ function Cart() {
 
   return (
     <main className="flex flex-col justify-around items-center gap-5 p-5">
-      <div className="flex justify-between items-center w-full text-indigo-500 text-xl">
-        <h1>Cart</h1>
+      <div className="flex justify-between items-center w-full text-indigo-500 bg-white shadow-xl rounded-xl p-5 text-xl">
+        <p className="font-bold">Cart</p>
         <button
           onClick={handleCheckout}
           type="button"
@@ -102,7 +102,7 @@ function Cart() {
         cart.products.map((item: CartItemInterface) => (
           <div
             key={item._id}
-            className="flex justify-around items-center gap-6 rounded-lg border-indigo-400 border-2 p-5 text-indigo-400 w-full"
+            className="flex justify-around items-center gap-6 rounded-xl shadow-xl p-5 text-indigo-400 w-full bg-white"
           >
             <div className="flex justify-center items-center w-full">
               {item.product.thumbnails.map((url: string) => (
@@ -154,7 +154,7 @@ function Cart() {
           </div>
         ))
       )}
-      <div className="flex justify-between border-indigo-500 py-5 border-t-2 items-center w-full text-indigo-500 text-xl">
+      <div className="flex justify-between p-5 items-center w-full text-indigo-500 text-xl rounded-xl shadow-xl bg-white">
         <p className="font-bold">Total: ${total}</p>
         <button
           onClick={handleCheckout}
